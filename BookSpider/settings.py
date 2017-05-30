@@ -134,8 +134,8 @@ CREATE TABLE IF NOT EXISTS `amazon_book`
 #    'BookSpider.pipelines.BookspiderPipeline': 300,
 # }
 ITEM_PIPELINES = {
-    # 'BookSpider.pipelines.MysqlTwistedPipline': 1
-    'BookSpider.pipelines.MySQLPipeline': 1
+    'BookSpider.pipelines.MysqlTwistedPipline': 1
+    # 'BookSpider.pipelines.MySQLPipeline': 1
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
