@@ -54,7 +54,7 @@ NEWSPIDER_MODULE = 'BookSpider.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-USER_AGENT = 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'
+# USER_AGENT = 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'
 
 
 # Obey robots.txt rules
@@ -94,8 +94,13 @@ COOKIES_ENABLED = False
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 # DOWNLOADER_MIDDLEWARES = {
-#    'BookSpider.middlewares.MyCustomDownloaderMiddleware': 543,
-#}
+#     # 'BookSpider.middlewares.MyCustomDownloaderMiddleware': 543,
+#     'BookSpider.middlewares.rotate_user_agent.RandomUserAgentMiddleware': 400,
+# }
+DOWNLOADER_MIDDLEWARES = {
+    'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
+    'scrapy_fake_useragent.middleware.RandomUserAgentMiddleware': 400,
+}
 
 # Enable or disable extensions
 # See http://scrapy.readthedocs.org/en/latest/topics/extensions.html
