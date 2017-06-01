@@ -5,9 +5,9 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 import mysql.connector as my
-import hashlib
 from twisted.enterprise import adbapi
 import BookSpider.settings as settings
+import hashlib
 
 
 class BookspiderPipeline(object):
@@ -76,23 +76,6 @@ class MysqlTwistedPipline(object):
         print(failure)
 
     def do_insert(self, cursor, item):
-        # 执行具体的插入
-        # 根据不同的item 构建不同的sql语句并插入到mysql中
-        book_id = self.hash_book_id(item["name"] + item["packed"])
-        url = item["url"]
-        name = item["name"]
-        packed = item["packed"]
-        comments_num = item["comments_num"]
-        price = item["price"]
-        book_data = (book_id, url, name, packed, comments_num, price)
 
-        insert_sql = """
-            INSERT INTO amazon_book (id, url, name, packed, comments_num, price)
-            VALUES (%s, %s, %s, %s, %s, %s)
-        """
-        cursor.execute(insert_sql, book_data)
-
-    def hash_book_id(self, book_id):
-        md5 = hashlib.md5()
-        md5.update(book_id.encode('utf-8'))
-        return md5.hexdigest()
+        insert_sql, params = item.get_insert_sql()
+        cursor.execute(insert_sql, params)
