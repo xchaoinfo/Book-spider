@@ -120,7 +120,7 @@ MYSQL_PASSWORD = "123456"
 # packed -- [装帧方式]
 # comments_num -- [评论数]
 # price -- [价格]
-CREAT_TABLE_SQL = """
+CREAT_TABLE_SQL_AMAZON = """
 CREATE TABLE IF NOT EXISTS `amazon_book`
 (
     id VARCHAR(32) NOT NULL PRIMARY KEY,
@@ -131,6 +131,18 @@ CREATE TABLE IF NOT EXISTS `amazon_book`
     price decimal(10,2)
 ) charset utf8 collate utf8_general_ci
 """
+CREAT_TABLE_SQL_JD = """
+CREATE TABLE IF NOT EXISTS `jd_book`
+(
+    id VARCHAR(32) NOT NULL PRIMARY KEY,
+    url VARCHAR(500),
+    name VARCHAR(50),
+    packed VARCHAR(50),
+    comments_num VARCHAR(10),
+    price decimal(10,2)
+) charset utf8 collate utf8_general_ci
+"""
+
 
 
 # Configure item pipelines
