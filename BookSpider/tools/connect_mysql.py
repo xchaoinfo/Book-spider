@@ -5,7 +5,7 @@ import BookSpider.settings as settings
 
 
 class ConnectMySQL(object):
-    """docstring for Con_MySQL"""
+    """docstring for ConnectMySQL"""
 
     def __init__(self):
         super(ConnectMySQL, self).__init__()
@@ -18,3 +18,6 @@ class ConnectMySQL(object):
 
     def execute_sql(self, sql):
         self.cursor.execute(sql)
+
+    def __del__(self):
+        self.conn.close()
